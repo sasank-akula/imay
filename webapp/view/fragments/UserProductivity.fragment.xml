@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+>
+    <VBox id="_IDGenVBox3">
+        <smartFilterBar:SmartFilterBar id="_IDGenSmartFilterBar2"
+            entitySet="Customers"
+            persistencyKey="SmartFilter_Explored"
+            basicSearchFieldName="ContactName"
+            enableBasicSearch="true"
+        >
+            <smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration" key="ContactName">
+                    <smartFilterBar:defaultFilterValues>
+                        <smartFilterBar:SelectOption id="_IDGenSelectOption" low="Maria Anders" />
+                    </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+                <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration1" key="Phone">
+                    <smartFilterBar:defaultFilterValues>
+                        <smartFilterBar:SelectOption id="_IDGenSelectOption1" low="030-0074321" />
+                    </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+            </smartFilterBar:controlConfiguration>
+            <smartFilterBar:layoutData>
+                <FlexItemData id="_IDGenFlexItemData" shrinkFactor="0" />
+            </smartFilterBar:layoutData>
+        </smartFilterBar:SmartFilterBar>
+
+        <smartTable:SmartTable id="_IDGenSmartTable"
+            entitySet="Customers"
+            smartFilterId="_IDGenSmartFilterBar2"
+            tableType="Table"
+            enableExport="true"
+            beforeExport="onBeforeExport"
+            useVariantManagement="true"
+            useTablePersonalisation="true"
+            header="User Productivity"
+            showRowCount="true"
+            persistencyKey="SmartTableAnalytical_Explored"
+            enableAutoBinding="true"
+            class="sapUiResponsiveContentPadding"
+            enableAutoColumnWidth="true"
+            editTogglable="true"
+        >
+            <smartTable:layoutData>
+                <FlexItemData id="_IDGenFlexItemData1" growFactor="1" baseSize="0%" />
+            </smartTable:layoutData>
+        </smartTable:SmartTable>
+    </VBox>
+</core:FragmentDefinition>

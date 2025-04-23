@@ -1,0 +1,150 @@
+<mvc:View
+    controllerName="com.sap.imayl.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+>
+    
+    <VBox
+        id="_IDGenVBox"
+        fitContainer="true"
+        height="100%"
+        width="100%"
+    >
+        <tnt:ToolHeader id="_IDGenToolHeader">
+            <Button
+                id="_IDGenButton"
+                icon="sap-icon://menu2"
+                press=".onCollapseExpandPress"
+            />
+            <ToolbarSpacer id="_IDGenToolbarSpacer" />
+            <Button
+                id="_IDGenButton1"
+                icon="sap-icon://action-settings"
+            />
+            <Text
+                id="_IDGenText"
+                text="Sasank Akula"
+            />
+        </tnt:ToolHeader>
+
+        <HBox
+            id="_IDGenHBox"
+            fitContainer="true"
+            height="100%"
+            renderType="Bare"
+        >
+            <tnt:SideNavigation
+                id="sideNavigation"
+                expanded="true"
+                selectedKey="walked"
+            >
+                <tnt:NavigationList
+                    id="_IDGenNavigationList1"
+                    itemSelect=".onItemSelect"
+                >
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem"
+                        key="all"
+                        text="All Packages"
+                        icon="sap-icon://soccer"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem1"
+                        key="receive"
+                        text="Recieve a package"
+                        icon="sap-icon://add-product"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem2"
+                        key="mine"
+                        text="My Packages"
+                        icon="sap-icon://customer-history"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem3"
+                        text="Reports"
+                        icon="sap-icon://inspection"
+                        expanded="false"
+                    >
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem4"
+                            key="sla"
+                            text="SLA Compliance"
+                            icon="sap-icon://org-chart"
+                        />
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem5"
+                            key="pending"
+                            text="Pending Deliveries"
+                            icon="sap-icon://org-chart"
+                        />
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem6"
+                            key="researched"
+                            text="Researched Packages"
+                            icon="sap-icon://org-chart"
+                        />
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem7"
+                            key="productivity"
+                            text="User Productivity"
+                            icon="sap-icon://org-chart"
+                        />
+                    </tnt:NavigationListItem>
+                </tnt:NavigationList>
+
+                <tnt:fixedItem>
+                    <tnt:NavigationList id="_IDGenNavigationList2">
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem8"
+                            text="Set Up"
+                            icon="sap-icon://wrench"
+                        />
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem9"
+                            selectable="false"
+                            href="https://sap.com"
+                            target="_blank"
+                            text="User Log"
+                            icon="sap-icon://org-chart"
+                        />
+                        <tnt:NavigationListItem
+                            id="_IDGenNavigationListItem10"
+                            text="Email Editor"
+                            icon="sap-icon://email-read"
+                        />
+                    </tnt:NavigationList>
+                </tnt:fixedItem>
+            </tnt:SideNavigation>
+
+            <f:DynamicPage id="_IDGenDynamicPage1">
+                <f:title>
+                    <f:DynamicPageTitle id="_IDGenDynamicPageTitle">
+                        <f:heading>
+                            <Text
+                                id="_IDGenText1"
+                                text="{/propertyName}"
+                            />
+                        </f:heading>
+                    </f:DynamicPageTitle>
+                </f:title>
+                <f:content>
+                    <VBox
+                        id="pageContainer"
+                        fitContainer="true"
+                    >
+                        
+                    </VBox>
+                </f:content>
+            </f:DynamicPage>
+        </HBox>
+
+        
+    </VBox>
+    
+</mvc:View>

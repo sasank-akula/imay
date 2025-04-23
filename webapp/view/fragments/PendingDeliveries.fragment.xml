@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+>
+    <VBox id="_IDGenVBox4">
+        <smartFilterBar:SmartFilterBar id="_IDGenSmartFilterBar1"
+            entitySet="Order_Details"
+            persistencyKey="SmartFilter_Explored"
+            basicSearchFieldName="Discount"
+            enableBasicSearch="true"
+        >
+            <smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration2" key="Discount">
+                    <smartFilterBar:defaultFilterValues>
+                        <smartFilterBar:SelectOption id="_IDGenSelectOption2" low="0" />
+                    </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+             
+            </smartFilterBar:controlConfiguration>
+            <smartFilterBar:layoutData>
+                <FlexItemData id="_IDGenFlexItemData2" shrinkFactor="0" />
+            </smartFilterBar:layoutData>
+        </smartFilterBar:SmartFilterBar>
+
+        <smartTable:SmartTable id="_IDGenSmartTable1"
+            entitySet="Order_Details"
+            smartFilterId="_IDGenSmartFilterBar1"
+            tableType="Table"
+            enableExport="true"
+            beforeExport="onBeforeExport"
+            useVariantManagement="true"
+            useTablePersonalisation="true"
+            header="Pending Deliveries"
+            showRowCount="true"
+            persistencyKey="SmartTableAnalytical_Explored"
+            enableAutoBinding="true"
+            class="sapUiResponsiveContentPadding"
+            enableAutoColumnWidth="true"
+            editTogglable="true"
+        >
+            <smartTable:layoutData>
+                <FlexItemData id="_IDGenFlexItemData3" growFactor="1" baseSize="0%" />
+            </smartTable:layoutData>
+        </smartTable:SmartTable>
+    </VBox>
+</core:FragmentDefinition>

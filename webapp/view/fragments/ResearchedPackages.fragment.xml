@@ -1,0 +1,47 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+>
+    <VBox id="_IDGenVBox2">
+        <smartFilterBar:SmartFilterBar id="_IDGenSmartFilterBar"
+            entitySet="Products"
+            persistencyKey="SmartFilter_Explored"
+            basicSearchFieldName="ProductID"
+            enableBasicSearch="true"
+        >
+            <smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration3" key="ProductID">
+                    <smartFilterBar:defaultFilterValues>
+                        <smartFilterBar:SelectOption id="_IDGenSelectOption3" low="1" />
+                    </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+            </smartFilterBar:controlConfiguration>
+            <smartFilterBar:layoutData>
+                <FlexItemData id="_IDGenFlexItemData7" shrinkFactor="0" />
+            </smartFilterBar:layoutData>
+        </smartFilterBar:SmartFilterBar>
+
+        <smartTable:SmartTable id="_IDGenSmartTable3"
+            entitySet="Products"
+            smartFilterId="_IDGenSmartFilterBar"
+            tableType="Table"
+            enableExport="true"
+            beforeExport="onBeforeExport"
+            useVariantManagement="true"
+            useTablePersonalisation="true"
+            header="Researched Packages"
+            showRowCount="true"
+            persistencyKey="SmartTableAnalytical_Explored"
+            enableAutoBinding="true"
+            class="sapUiResponsiveContentPadding"
+            enableAutoColumnWidth="true"
+            editTogglable="true"
+        >
+            <smartTable:layoutData>
+                <FlexItemData id="_IDGenFlexItemData8" growFactor="1" baseSize="0%" />
+            </smartTable:layoutData>
+        </smartTable:SmartTable>
+    </VBox>
+</core:FragmentDefinition>
