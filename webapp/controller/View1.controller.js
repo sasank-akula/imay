@@ -12,8 +12,14 @@ sap.ui.define([
         onCollapseExpandPress() {
             const oSideNavigation = this.byId("sideNavigation"),
                 bExpanded = oSideNavigation.getExpanded();
-
-            oSideNavigation.setExpanded(!bExpanded);
+                oSideNavigation.setExpanded(!bExpanded);
+                const oImage = this.byId("_IDGenImage")
+                if(bExpanded){
+                   oImage.setSrc("/img/mlogo.png");
+                }
+                else{
+                    oImage.setSrc("/img/logo.png");
+                }
         },
 
         onItemSelect: function (oEvent) {

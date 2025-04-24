@@ -8,40 +8,32 @@
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:smartTable="sap.ui.comp.smarttable"
 >
-    
-    <VBox
+    <HBox
         id="_IDGenVBox"
         fitContainer="true"
         height="100%"
         width="100%"
     >
-        <tnt:ToolHeader id="_IDGenToolHeader">
-            <Button
-                id="_IDGenButton"
-                icon="sap-icon://menu2"
-                press=".onCollapseExpandPress"
-            />
-            <ToolbarSpacer id="_IDGenToolbarSpacer" />
-            <Button
-                id="_IDGenButton1"
-                icon="sap-icon://action-settings"
-            />
-            <Text
-                id="_IDGenText"
-                text="Sasank Akula"
-            />
-        </tnt:ToolHeader>
-
-        <HBox
+        <VBox
             id="_IDGenHBox"
             fitContainer="true"
             height="100%"
+            width="auto"
             renderType="Bare"
         >
+            <Image
+                id="_IDGenImage"
+                class="logoTransition"
+                src="/img/mlogo.png"
+                 width="100%"
+                height="45px"
+                decorative="false"
+                alt="Company Logo"
+            />
+
             <tnt:SideNavigation
                 id="sideNavigation"
-                expanded="true"
-                selectedKey="walked"
+                expanded="false"
             >
                 <tnt:NavigationList
                     id="_IDGenNavigationList1"
@@ -121,6 +113,31 @@
                     </tnt:NavigationList>
                 </tnt:fixedItem>
             </tnt:SideNavigation>
+        </VBox>
+
+        <VBox
+            id="_IDGenVBox5"
+            fitContainer="true"
+            height="100%"
+            width="100%"
+            renderType="Bare"
+        >
+            <tnt:ToolHeader id="_IDGenToolHeader">
+                <Button
+                    id="_IDGenButton"
+                    icon="sap-icon://menu2"
+                    press=".onCollapseExpandPress"
+                />
+                <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                <Button
+                    id="_IDGenButton1"
+                    icon="sap-icon://action-settings"
+                />
+                <Text
+                    id="_IDGenText"
+                    text="Sasank Akula"
+                />
+            </tnt:ToolHeader>
 
             <f:DynamicPage id="_IDGenDynamicPage1">
                 <f:title>
@@ -137,14 +154,18 @@
                     <VBox
                         id="pageContainer"
                         fitContainer="true"
-                    >
-                        
-                    </VBox>
+                    />
                 </f:content>
             </f:DynamicPage>
-        </HBox>
 
-        
-    </VBox>
-    
+            <Bar id="_IDGenBar">
+                <contentLeft>
+                    <Text
+                        id="_IDGenText3"
+                        text="© IMAYL, Inc. All rights reserved."
+                    />
+                </contentLeft>
+            </Bar>
+        </VBox>
+    </HBox>
 </mvc:View>
