@@ -9,7 +9,7 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ignoreCertError: false
         ui5:
           path:
             - /resources
@@ -20,6 +20,10 @@ server:
             authenticationType: NoAuthentication
             destination: NORTHWINDservice
             path: /v2
+          - url: https://ccc9e828trial-dev-nexpro-srv.cfapps.us10-001.hana.ondemand.com
+            authenticationType: NoAuthentication
+            destination: IMAYL
+            path: /odata
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -36,7 +40,7 @@ server:
       configuration:
         mountPath: /
         services:
-          - urlPath: /v2/northwind/northwind.svc
+          - urlPath: /odata/v4/delivery
             metadataPath: ./webapp/localService/mainService/metadata.xml
             mockdataPath: ./webapp/localService/mainService/data
             generateMockData: true

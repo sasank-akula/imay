@@ -17,12 +17,12 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/v2/northwind/northwind.svc/",
+        "uri": "/odata/v4/delivery/",
         "type": "OData",
         "settings": {
           "annotations": [],
           "localUri": "localService/mainService/metadata.xml",
-          "odataVersion": "2.0"
+          "odataVersion": "4.0"
         }
       }
     }
@@ -47,13 +47,12 @@
     "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.134.1",
-    "libs": {
+      "libs": {
         "sap.ui.comp": {},
         "sap.ui.table": {},
         "sap.m": {},
         "sap.f": {}
       }
-
     },
     "contentDensities": {
       "compact": true,
@@ -69,7 +68,13 @@
       "": {
         "dataSource": "mainService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupId": "$auto",
+          "updateGroupId": "$auto" 
+        }
       }
     },
     "resources": {
@@ -94,7 +99,7 @@
       "routes": [
         {
           "name": "RouteView1",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetView1"
           ]

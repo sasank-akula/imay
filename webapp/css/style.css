@@ -3,6 +3,8 @@
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
     background-color: white;
+    align-items: center;
+    justify-content: center;
 }
 
 .logoTransition.fade-out {

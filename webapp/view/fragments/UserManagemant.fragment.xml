@@ -1,8 +1,15 @@
 <core:FragmentDefinition
     xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt"
+    xmlns:u="sap.ui.unified">
     <VBox>
-        <Table items="{/Users}">
+       <u:FileUploader id="fileUploader" icon="sap-icon://excel-attachment" change=".onFileUpload" iconOnly="true"/>
+       
+       <Button icon="sap-icon://add" press=".onAddUser"/>
+       <Button text="Delete All" press=".onClearAllData"/>
+       <Table items="{path: '/Users', sorter:{path: 'firstName',descending: false}}"  headerText="{= 'Total Items: ' + ${/Users}.length }">
+        
             <columns>
                 <Column>
                     <Text text="First Name" />

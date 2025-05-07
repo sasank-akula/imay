@@ -9,17 +9,17 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ignoreCertError: false
         ui5:
           path:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
         backend:
-          - url: https://services.odata.org/
+          - url: https://ccc9e828trial-dev-nexpro-srv.cfapps.us10-001.hana.ondemand.com
             authenticationType: NoAuthentication
-            destination: NORTHWINDservice
-            path: /v2
+            destination: IMAYL
+            path: /odata
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

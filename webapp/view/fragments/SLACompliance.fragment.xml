@@ -5,43 +5,6 @@
     xmlns:smartTable="sap.ui.comp.smarttable"
 >
     <VBox id="_IDGenVBox1">
-        <smartFilterBar:SmartFilterBar id="_IDGenSmartFilterBar3"
-            entitySet="Orders"
-            persistencyKey="SmartFilter_Explored"
-            basicSearchFieldName="OrderID"
-            enableBasicSearch="true"
-        >
-            <smartFilterBar:controlConfiguration>
-                <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration4" key="OrderID">
-                    <smartFilterBar:defaultFilterValues>
-                        <smartFilterBar:SelectOption id="_IDGenSelectOption4" low="10248" />
-                    </smartFilterBar:defaultFilterValues>
-                </smartFilterBar:ControlConfiguration>
-            </smartFilterBar:controlConfiguration>
-            <smartFilterBar:layoutData>
-                <FlexItemData id="_IDGenFlexItemData4" shrinkFactor="0" />
-            </smartFilterBar:layoutData>
-        </smartFilterBar:SmartFilterBar>
-
-        <smartTable:SmartTable id="_IDGenSmartTable2"
-            entitySet="Orders"
-            smartFilterId="_IDGenSmartFilterBar3"
-            tableType="Table"
-            enableExport="true"
-            beforeExport="onBeforeExport"
-            useVariantManagement="true"
-            useTablePersonalisation="true"
-            header="SLA Complaince"
-            showRowCount="true"
-            persistencyKey="SmartTableAnalytical_Explored"
-            enableAutoBinding="true"
-            class="sapUiResponsiveContentPadding"
-            enableAutoColumnWidth="true"
-            editTogglable="true"
-        >
-            <smartTable:layoutData>
-                <FlexItemData id="_IDGenFlexItemData5" growFactor="1" baseSize="0%" />
-            </smartTable:layoutData>
-        </smartTable:SmartTable>
+        
     </VBox>
 </core:FragmentDefinition>
