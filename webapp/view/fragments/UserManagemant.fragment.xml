@@ -1,43 +1,174 @@
 <core:FragmentDefinition
-    xmlns="sap.m"
+    xmlns="sap.ui.table"
     xmlns:core="sap.ui.core"
     xmlns:tnt="sap.tnt"
-    xmlns:u="sap.ui.unified">
-    <VBox>
-       <u:FileUploader id="fileUploader" icon="sap-icon://excel-attachment" change=".onFileUpload" iconOnly="true"/>
-       
-       <Button icon="sap-icon://add" press=".onAddUser"/>
-       <Button text="Delete All" press=".onClearAllData"/>
-       <Table items="{path: '/Users', sorter:{path: 'firstName',descending: false}}"  headerText="{= 'Total Items: ' + ${/Users}.length }">
-        
+    xmlns:u="sap.ui.unified"
+    xmlns:m="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar"
+>
+    <m:VBox id="_IDGenVBox3" fitContainer="true">
+        <Table
+            id="table1"
+            rows="{/Users}"
+            selectionMode="MultiToggle"
+            ariaLabelledBy="title"
+        >
+            <extension>
+                <m:OverflowToolbar
+                    id="_IDGenOverflowToolbar"
+                    style="Clear"
+                >
+                    <m:Title text="Users" />
+                    <m:ToolbarSpacer id="_IDGenToolbarSpacer3" />
+                    <m:Button
+                        text="Edit"
+                        press=".onEnableAllInputs"
+                        icon="sap-icon://edit"
+                    />
+                    <m:Button
+                        text="Save All"
+                        icon="sap-icon://save"
+                        press=".onSave"
+                        type="Emphasized"
+                    />
+                    <m:Button
+                        id="_IDGenButton5"
+                        type="Emphasized"
+                        icon="sap-icon://add"
+                        text="Add User"
+                        press=".onAddRow"
+                    />
+                    <m:Button
+                        id="_IDGenButton6"
+                        type="Emphasized"
+                        icon="sap-icon://sys-cancel-2"
+                        text="Remove User"
+                        press=".onDeleteSelectedRows"
+                    />
+                    <m:Button
+                        press=".onClearAllData"
+                        icon="sap-icon://delete"
+                        text="DeleteAll"
+                        type="Emphasized"
+                    />
+                    <u:FileUploader
+                        icon="sap-icon://excel-attachment"
+                        buttonOnly="true"
+                        buttonText="Xl import"
+                        id="fileUploader"
+                        name="myFileUpload"
+                        uploadUrl="upload/"
+                        tooltip="Add xl sheet"
+                        change=".onFileUpload"
+                        fileType="xlsx"
+                    />
+                </m:OverflowToolbar>
+            </extension>
+
             <columns>
-                <Column>
-                    <Text text="First Name" />
+                <Column width="11rem">
+                    <m:Label text="Access Type" />
+                    <template>
+                        <m:Input id="_IDGenInput" value="{path:'accessType'}" />
+                    </template>
                 </Column>
-                <Column>
-                    <Text text="Last Name" />
+                <Column width="20rem">
+                    <m:Label text="Address" />
+                    <template>
+                        <m:Input id="_IDGenInput1" value="{path:'address1'}" />
+                    </template>
                 </Column>
-                <Column>
-                    <Text text="Email" />
+                <Column width="10rem">
+                    <m:Label text="City" />
+                    <template>
+                        <m:Input id="_IDGenInput2" value="{path:'city'}" />
+                    </template>
                 </Column>
-                <Column>
-                    <Text text="City" />
+                <Column width="10rem">
+                    <m:Label text="Country" />
+                    <template>
+                        <m:Input id="_IDGenInput3" value="{path:'country'}" />
+                    </template>
                 </Column>
-                <Column>
-                    <Text text="Role" />
+                <Column width="15rem">
+                    <m:Label text="Department" />
+                    <template>
+                        <m:Input id="_IDGenInput4" value="{path:'department'}" />
+                    </template>
+                </Column>
+                <Column width="20rem">
+                    <m:Label text="Email ID" />
+                    <template>
+                        <m:Input id="_IDGenInput5" value="{path:'emailID'}" />
+                    </template>
+                </Column>
+                <Column width="10rem">
+                    <m:Label text="Employee ID" />
+                    <template>
+                        <m:Input id="_IDGenInput6" value="{path:'empID'}" />
+                    </template>
+                </Column>
+                <Column width="11rem">
+                    <m:Label text="First Name" />
+                    <template>
+                        <m:Input id="_IDGenInput7" value="{path:'firstName'}" />
+                    </template>
+                </Column>
+                <Column width="10rem">
+                    <m:Label text="Language" />
+                    <template>
+                        <m:Input id="_IDGenInput8" value="{path:'language'}" />
+                    </template>
+                </Column>
+                <Column width="11rem">
+                    <m:Label text="Last Name" />
+                    <template>
+                        <m:Input id="_IDGenInput9" value="{path:'lastName'}" />
+                    </template>
+                </Column>
+                <Column width="15rem">
+                    <m:Label text="Location" />
+                    <template>
+                        <m:Input id="_IDGenInput10" value="{path:'location'}" />
+                    </template>
+                </Column>
+                <Column width="15rem">
+                    <m:Label text="Phone" />
+                    <template>
+                        <m:Input id="_IDGenInput11" value="{path:'phone'}" />
+                    </template>
+                </Column>
+                <Column width="15rem">
+                    <m:Label text="Role" />
+                    <template>
+                        <m:Input id="_IDGenInput12" value="{path:'role'}" />
+                    </template>
+                </Column>
+                <Column width="15rem">
+                    <m:Label text="State" />
+                    <template>
+                        <m:Input id="_IDGenInput13" value="{path:'state'}" />
+                    </template>
+                </Column>
+                <Column width="10rem">
+                    <m:Label text="Status" />
+                    <template>
+                        <m:Input id="_IDGenInput14" value="{path:'status'}" />
+                    </template>
+                </Column>
+                <Column width="12rem">
+                    <m:Label text="User Type" />
+                    <template>
+                        <m:Input id="_IDGenInput15" value="{path:'userType'}" />
+                    </template>
+                </Column>
+                <Column width="10rem">
+                    <m:Label text="Zip Code" />
+                    <template>
+                        <m:Input id="_IDGenInput16" value="{path:'zipcode'}" />
+                    </template>
                 </Column>
             </columns>
-            <items>
-                <ColumnListItem>
-                    <cells>
-                        <Text text="{firstName}" />
-                        <Text text="{lastName}" />
-                        <Text text="{emailID}" />
-                        <Text text="{city}" />
-                        <Text text="{role}" />
-                    </cells>
-                </ColumnListItem>
-            </items>
         </Table>
-    </VBox>
+    </m:VBox>
 </core:FragmentDefinition>

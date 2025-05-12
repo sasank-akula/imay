@@ -2,16 +2,18 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
     "sap/m/BusyDialog",
-    "sap/m/MessageToast"
-], (Controller, Fragment, BusyDialog,MessageToast) => {
+    "sap/m/MessageToast",
+    "sap/m/MessageBox"
+
+], (Controller, Fragment, BusyDialog, MessageToast,MessageBox) => {
     "use strict";
 
     return Controller.extend("com.sap.imayl.controller.View1", {
         onInit: function () {
             this._fragments = {};
-
+            this.oModel = this.getView().getModel();
             var oEmailModel = new sap.ui.model.json.JSONModel({
-                emailTemplates:  [
+                emailTemplates: [
                     {
                         code: "TMP001",
                         templateName: "Default Tender",
@@ -45,21 +47,10 @@ sap.ui.define([
             this._oEmailDialog = null;
             this._oAddDialog = null;
         },
-        onAfterRendering: function () {
-            var oTable = this.byId("userTable");
-            var oBinding = oTable.getBinding("items");
-        
-            // Update header when items are loaded or changed
-            oBinding.attachChange(() => {
-                var iCount = oBinding.getLength();
-                oTable.setHeaderText("Total Items: " + iCount);
-            });
-        },
-        
 
         onCollapseExpandPress() {
             const oSideNavigation = this.byId("sideNavigation");
-           const bExpanded = oSideNavigation.getExpanded();
+            const bExpanded = oSideNavigation.getExpanded();
             oSideNavigation.setExpanded(!bExpanded);
             const oImage = this.byId("_IDGenImage");
             if (bExpanded) {
@@ -71,7 +62,6 @@ sap.ui.define([
         },
 
         onItemSelect: function (oEvent) {
-           console.log( this.getView().getModel());
             this._oBusyDialog.open();
             const sKey = oEvent.getParameter("item").getKey();
             const oContainer = this.byId("pageContainer");
@@ -82,7 +72,7 @@ sap.ui.define([
                 researched: "com.sap.imayl.view.fragments.ResearchedPackages",
                 productivity: "com.sap.imayl.view.fragments.UserProductivity",
                 email: "com.sap.imayl.view.fragments.EmailEditor",
-                user:"com.sap.imayl.view.fragments.UserManagemant"
+                user: "com.sap.imayl.view.fragments.UserManagemant"
             };
 
             const mTitles = {
@@ -91,7 +81,7 @@ sap.ui.define([
                 researched: "Researched Packages",
                 productivity: "User Productivity",
                 email: "Email Editor",
-                user:"User Management"
+                user: "User Management"
             };
 
             this.getView().byId("_IDGenText1").setProperty("text", mTitles[sKey] || "");
@@ -110,6 +100,7 @@ sap.ui.define([
             if (!this._fragments[sKey]) {
                 Fragment.load({
                     name: sFragmentPath,
+                    id: this.getView().getId(),
                     controller: this
                 }).then((oFragment) => {
                     this._fragments[sKey] = oFragment;
@@ -133,7 +124,7 @@ sap.ui.define([
         onEditTemplate: function (oEvent) {
             const oContext = oEvent.getSource().getParent().getBindingContext("emailModel");
             const oData = oContext.getObject();
-            this._selectedIndex = oContext.getPath(); 
+            this._selectedIndex = oContext.getPath();
             this._openEmailDialog("edit", oData);
         },
 
@@ -143,7 +134,7 @@ sap.ui.define([
             const oModel = this.getView().getModel("emailModel");
 
             var aData = oModel.getProperty("/emailTemplates");
-            aData.splice(parseInt(oPath.split("/")[2]), 1); 
+            aData.splice(parseInt(oPath.split("/")[2]), 1);
             oModel.refresh();
         },
 
@@ -169,7 +160,7 @@ sap.ui.define([
 
         _prepareDialog: function (mode, oData) {
             console.log(oData);
-        
+
             var oDialogModel = new sap.ui.model.json.JSONModel(oData || {
                 code: "",
                 statusName: "",
@@ -181,25 +172,25 @@ sap.ui.define([
                 smsText: "",
                 isActive: false
             });
-        
+
             this._oEmailDialog.setModel(oDialogModel, "dialogModel");
-        
+
             this._oEmailDialog.setBindingContext(
                 new sap.ui.model.Context(oDialogModel, "/"),
                 "dialogModel"
             );
-        
+
             console.log(this._oEmailDialog.getModel("dialogModel"));
             this._mode = mode;
         }
-        
+
         ,
 
         onSaveDialog: function () {
             var oDialogModel = this._oEmailDialog.getModel("dialogModel");
             var oNewData = oDialogModel.getData();
 
-            var oModel = this.getView().getModel("emailModel");
+            const oModel = this.getView().getModel("emailModel");
             var aData = oModel.getProperty("/emailTemplates");
 
             if (this._mode === "add") {
@@ -211,68 +202,10 @@ sap.ui.define([
             oModel.refresh();
             this._oEmailDialog.close();
         },
-
         onCancelDialog: function () {
             this._oEmailDialog.close();
         },
 
-
-        onAddUser: function () {
-            if (!this._oAddDialog) {
-                Fragment.load({
-                    id: "AddUserFragment",
-                    name: "com.sap.imayl.view.fragments.AddUser",
-                    controller: this
-                }).then((oDialog) => {
-                    this._oAddDialog = oDialog;
-                    this.getView().addDependent(this._oAddDialog);
-                    this._oAddDialog.open();
-                });
-            } else {
-                this._oAddDialog.open(); // Fix: open _oAddDialog, not _oEmailDialog
-            }
-        }
-        
-        
-        ,
-        onSavePress: function () {
-            const getInputValue = (id) => Fragment.byId("AddUserFragment", id)?.getValue();
-        
-            const oUserData = {
-                empID: getInputValue("empID"),
-                firstName: getInputValue("firstName"),
-                lastName: getInputValue("lastName"),
-                emailID: getInputValue("emailID"),
-                phone: getInputValue("phone"),
-                role: getInputValue("role"),
-                department: getInputValue("department"),
-                userType: getInputValue("userType"),
-                accessType: getInputValue("accessType"),
-                language: getInputValue("language"),
-                status: getInputValue("status"),
-                address1: getInputValue("address1"),
-                city: getInputValue("city"),
-                state: getInputValue("state"),
-                country: getInputValue("country"),
-                zipcode: getInputValue("zipcode"),
-                location: getInputValue("location")
-            };
-            var oModel=this.getView().getModel();
-            var oBinding=oModel.bindList("/Users")
-            var oContext=oBinding.create(oUserData);
-            oContext.created().then(()=>{
-                MessageToast.show("Success")
-            }).catch((error)=>{
-                MessageToast.show("Error")
-                console.log(error)
-            })
-
-            this._oAddDialog.close();
-        }
-        ,
-        onCancelPress:function(){
-                this._oAddDialog.close();
-        },
         onFileUpload: function (event) {
             var that = this;
             var file = event.getParameter("files")[0];
@@ -286,48 +219,109 @@ sap.ui.define([
                 var worksheet = workbook.Sheets[workbook.SheetNames[0]];
                 var jsonData = XLSX.utils.sheet_to_json(worksheet);
                 // Use the jsonData as desired (e.g., display in a table, perform operations, etc.)
-        
-                const oModel = that.getView().getModel();
-                const groupId = "myBatchGroup";
-        
-                const oBinding = oModel.bindList("/Users");
-        
+                const oTable=that.byId("table1");
+                const oBinding = oTable.getBinding("rows");
+
                 jsonData.forEach((oPayload) => {
-                    oBinding.create(oPayload);
+                    oBinding.create(oPayload,{
+                        groupId: "deferredGroup"
+                    });
                 });
-        
-                oModel.submitBatch(groupId).then(() => {
-                    MessageToast.show("All records uploaded successfully!");
-                }).catch((oError) => {
-                    MessageBox.error("Error uploading records: " + oError.message);
-                });
+              
             };
             reader.readAsArrayBuffer(file);
         },
 
         onClearAllData: async function () {
-            const groupId = "myBatchGroup";
             const oModel = this.getView().getModel(); // OData V4 model
-            const oListBinding = oModel.bindList("/Users");
+            const oTable = this.byId("table1");
+            const oBinding = oTable.getBinding("rows");
+            const aContexts = oBinding.getContexts();
+            aContexts.forEach(oContext => {
+                oContext.delete("deferredGroup"); // or "deferredGroup" if batching is set in manifest
+            });
+        },
+        onAddRow: function () {
+            const oTable = this.byId("table1");
+            const oBinding = oTable.getBinding("rows");
         
-                const aContexts = await oListBinding.requestContexts(); // fetch contexts (data)
+            const oNewUser = {
+                accessType: "",
+                address1: "",
+                city: "",
+                country: "",
+                department: "",
+                emailID: "",
+                empID: "",
+                firstName: "",
+                language: "",
+                lastName: "",
+                location: "",
+                phone: "",
+                role: "",
+                state: "",
+                status: "",
+                userType: "",
+                zipcode: ""
+            };
         
-                for (let oContext of aContexts) {
-                    await oContext.delete(); // delete each item
-                }
-                oModel.submitBatch(groupId).then(() => {
-                    MessageToast.show("All records uploaded successfully!");
-                }).catch((oError) => {
-                    MessageBox.error("Error uploading records: " + oError.message);
+            oBinding.create(oNewUser, {
+                groupId: "deferredGroup" 
+            });
+        } ,
+        onSave: function () {
+            const oModel = this.getView().getModel();
+        
+            oModel.submitBatch("deferredGroup")
+                .then((oResponse) => {
+                    sap.m.MessageToast.show("Changes saved successfully");
+                    // Optional: Refresh the table or bindings here if needed
+                })
+                .catch((oError) => {
+                    sap.m.MessageBox.error("Save failed: " + oError.message);
                 });
-              
-             
-        }
+        },
+        onDeleteSelectedRows: function () {
+            const oTable = this.byId("table1"); // sap.ui.table.Table
+            const oModel = this.getView().getModel();
+            const aSelectedIndices = oTable.getSelectedIndices();
         
+            if (aSelectedIndices.length === 0) {
+                sap.m.MessageToast.show("No rows selected for deletion.");
+                return;
+            }
         
+            aSelectedIndices.forEach(iIndex => {
+                const oContext = oTable.getContextByIndex(iIndex);
+                if (oContext) {
+                    oContext.delete("$auto"); // or your batch group ID
+                }
+            });
         
+            oModel.submitBatch("$auto")
+                .then(() => {
+                    sap.m.MessageToast.show("Selected records deleted successfully.");
+                })
+                .catch(err => {
+                    sap.m.MessageBox.error("Deletion failed: " + err.message);
+                });
+        },
+        onEnableAllInputs: function () {
+            debugger
+            // Array of input IDs
+            const inputIds = [
+                "_IDGenInput1", "_IDGenInput2", "_IDGenInput3", "_IDGenInput4",
+                "_IDGenInput5", "_IDGenInput6", "_IDGenInput7", "_IDGenInput8",
+                "_IDGenInput9", "_IDGenInput10", "_IDGenInput11", "_IDGenInput12",
+                "_IDGenInput13", "_IDGenInput14", "_IDGenInput15", "_IDGenInput16",
+                "_IDGenInput"
+            ];
         
-        
-
+            // Loop through the array and set each input to editable
+            inputIds.forEach(id => {
+                this.byId(id).setEditable(true);
+            });
+        }     
     });
+   
 });
