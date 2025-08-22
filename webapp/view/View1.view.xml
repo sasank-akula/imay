@@ -25,7 +25,7 @@
                 <Image
                 id="_IDGenImage"
                 class="logoTransition"
-                src="/img/mlogo.png" 
+                src="./img/mlogo.png" 
                 decorative="false"
                 alt="Company Logo"
             />

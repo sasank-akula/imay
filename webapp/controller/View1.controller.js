@@ -54,9 +54,9 @@ sap.ui.define([
             oSideNavigation.setExpanded(!bExpanded);
             const oImage = this.byId("_IDGenImage");
             if (bExpanded) {
-                oImage.setSrc("/img/mlogo.png");
+                oImage.setSrc("./img/mlogo.png");
             } else {
-                oImage.setSrc("/img/logo.png");
+                oImage.setSrc("./img/logo.png");
             }
 
         },

@@ -25,6 +25,20 @@
           "odataVersion": "4.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "IMAYL-Display": {
+          "semanticObject": "IMAYL",
+          "action": "Display",
+          "title": "{{IMAYL-Display.flpTitle}}",
+          "subTitle": "{{IMAYL-Display.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
     }
   },
   "sap.ui": {
